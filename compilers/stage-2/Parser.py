@@ -253,7 +253,7 @@ class Parser:
 
                 # semantic action #
                 right = self.multiplicativeExpression()
-                node = Subtrat(left, right)
+                node = Substract(left, right)
                 return self.extendedAdditiveExpression(node)
                 # semantic action #
         else:
