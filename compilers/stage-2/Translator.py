@@ -48,7 +48,9 @@ class Identifier(Numeric):
             (_, value) = result
             return value
         else:
-            text = "Line " + self.line + " - " + self.name + " has not been declared"
+            text = (
+                "Line " + str(self.line) + " - " + self.name + " has not been declared"
+            )
             raise Exception(text)
 
 
@@ -433,7 +435,7 @@ class Left(Void):
         self.angle = angle
 
     def eval(self, env, aTurtle):
-        angle = float(self.angle.eval())
+        angle = float(self.angle.eval(env, aTurtle))
         aTurtle.left(angle)
 
 
@@ -442,26 +444,26 @@ class Right(Void):
         self.angle = angle
 
     def eval(self, env, aTurtle):
-        angle = float(self.angle.eval())
+        angle = float(self.angle.eval(env, aTurtle))
         aTurtle.right(angle)
 
 
 class Backward(Void):
-    def __init__(self, angle):
-        self.angle = angle
+    def __init__(self, distance):
+        self.distance = distance
 
     def eval(self, env, aTurtle):
-        angle = float(self.angle.eval())
-        aTurtle.backward(angle)
+        distance = float(self.distance.eval(env, aTurtle))
+        aTurtle.backward(distance)
 
 
 class Forward(Void):
-    def __init__(self, angle):
-        self.angle = angle
+    def __init__(self, distance):
+        self.distance = distance
 
     def eval(self, env, aTurtle):
-        angle = float(self.angle.eval())
-        aTurtle.forward(angle)
+        distance = float(self.distance.eval(env, aTurtle))
+        aTurtle.forward(distance)
 
 
 class Home(Void):
@@ -469,7 +471,7 @@ class Home(Void):
         aTurtle.home()
 
 
-class Assigment(Void):
+class Assignment(Void):
     def __init__(self, id, expression, line):
         self.line = line
         self.id = id
