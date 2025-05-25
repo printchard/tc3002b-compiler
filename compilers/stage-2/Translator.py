@@ -59,7 +59,7 @@ class Minus(Numeric):
         self.right = right
 
     def eval(self, env, aTurtle):
-        return -1 * float(self._right.eval(env, aTurtle))
+        return -1 * float(self.right.eval(env, aTurtle))
 
 
 class Add(Numeric):
